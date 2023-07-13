@@ -5,6 +5,7 @@ interface UserProps {
   name: string;
   password: string;
   avatar_url?: string | null;
+  verified?: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -42,6 +43,14 @@ export class User {
   }
   get name(): string {
     return this.props.name;
+  }
+
+  // Password
+  set verified(verified: boolean | null) {
+    this.props.verified = verified;
+  }
+  get verified(): boolean | null {
+    return this.props.verified;
   }
 
   // Password
