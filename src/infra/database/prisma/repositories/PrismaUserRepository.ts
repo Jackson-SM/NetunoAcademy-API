@@ -12,7 +12,7 @@ export class PrismaUserRepository implements UserRepository {
       user;
 
     await this.prisma.user.create({
-      data: { id, email, name, password, avatar_url },
+      data: { id, email, name, password, avatar_url, createdAt, updatedAt },
     });
   }
 }
