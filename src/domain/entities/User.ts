@@ -23,6 +23,11 @@ export class User {
     };
   }
 
+  //Id
+  get id(): string {
+    return this._id;
+  }
+
   // Email
   set email(email: string) {
     this.props.email = email;
