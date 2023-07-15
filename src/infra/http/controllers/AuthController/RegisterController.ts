@@ -1,6 +1,9 @@
 import {
   Body,
   Controller,
+  FileTypeValidator,
+  HttpStatus,
+  ParseFilePipe,
   Post,
   UploadedFile,
   UseInterceptors,
@@ -12,7 +15,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 
 @Controller('auth')
-export class AuthController {
+export class RegisterController {
   constructor(
     private registerUseCase: RegisterUseCase,
     private serviceImageRepository: ServiceImageRepository,
@@ -26,8 +29,18 @@ export class AuthController {
   )
   async register(
     @Body() body: RegisterBody,
-    @UploadedFile() file: Express.Multer.File,
+    @UploadedFile(
+      new ParseFilePipe({
+        validators: [new FileTypeValidator({ fileType: /(jpg|jpeg|png)$/ })],
+        errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY,
+      }),
+    )
+    file: Express.Multer.File,
   ) {
-    return this.serviceImageRepository.uploadImage(file);
+    const url_upload = await this.serviceImageRepository.uploadImage(file);
+    console.log(file);
+    return {
+      url: url_upload,
+    };
   }
 }
