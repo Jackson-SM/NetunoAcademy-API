@@ -8,6 +8,8 @@ export class CloudinaryService implements ServiceImageRepository {
     file: Express.Multer.File,
     options?: UploadApiOptions,
   ): Promise<string> {
-    return 'Hello World';
+    const img_uploader = await cloudinary.uploader.upload(file.path, options);
+
+    return img_uploader.url;
   }
 }
