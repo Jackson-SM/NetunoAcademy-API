@@ -14,8 +14,8 @@ export class User {
   private props: UserProps;
   private _id: string;
 
-  constructor(props: UserProps) {
-    this._id = randomUUID();
+  constructor(props: UserProps, id?: string) {
+    this._id = id ?? randomUUID();
     this.props = {
       ...props,
       avatar_url: props.avatar_url ?? null,
