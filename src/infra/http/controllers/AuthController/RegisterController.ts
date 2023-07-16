@@ -9,10 +9,12 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { RegisterUseCase } from 'src/application/use-cases/auth/register-use-case';
-import { RegisterBody } from '../../dtos/register-body';
 import { ServiceImageRepository } from 'src/domain/repositories/ServiceImageRepository';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
+import { RegisterBody } from '../../dtos/authentication/register-body';
+import { UserViewModel } from '../../view-models/UserViewModel';
+import * as bcrypt from 'bcrypt';
 
 @Controller('auth')
 export class RegisterController {
@@ -37,10 +39,22 @@ export class RegisterController {
     )
     file: Express.Multer.File,
   ) {
-    const url_upload = await this.serviceImageRepository.uploadImage(file);
-    console.log(file);
-    return {
-      url: url_upload,
-    };
+    const avatar_url = await this.serviceImageRepository.uploadImage(file);
+
+    const { email, name, password } = body;
+
+    const getSalt = await bcrypt.genSalt(10);
+    const passwordHash = await bcrypt.hash(password, getSalt);
+
+    const { user: rawUser } = await this.registerUseCase.execute({
+      email,
+      name,
+      password: passwordHash,
+      avatar_url,
+    });
+
+    const user = UserViewModel.toHttp(rawUser);
+
+    return user;
   }
 }
