@@ -12,6 +12,13 @@ export class PrismaAuthRepository implements AuthRepository {
   async register(user: User): Promise<void> {
     const userToPrisma = PrismaUserMapper.toPrisma(user);
 
+    const { password } = user;
+
+    const getSalt = await bcrypt.genSalt(10);
+    const passwordHash = await bcrypt.hash(password, getSalt);
+
+    user.password = passwordHash;
+
     await this.prisma.user.create({
       data: userToPrisma,
     });
