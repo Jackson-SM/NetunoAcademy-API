@@ -14,7 +14,6 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { RegisterBody } from '../../dtos/authentication/register-body';
 import { UserViewModel } from '../../view-models/UserViewModel';
-import * as bcrypt from 'bcrypt';
 
 @Controller('auth')
 export class RegisterController {
@@ -39,17 +38,21 @@ export class RegisterController {
     )
     file: Express.Multer.File,
   ) {
-    const avatar_url = await this.serviceImageRepository.uploadImage(file);
-
     const { email, name, password } = body;
 
-    const getSalt = await bcrypt.genSalt(10);
-    const passwordHash = await bcrypt.hash(password, getSalt);
+    let avatar_url: string | null;
+
+    if (file) {
+      avatar_url = await this.serviceImageRepository.uploadImage(file, {
+        folder: `users/${email}`,
+        public_id: `${email}-avatar`,
+      });
+    }
 
     const { user: rawUser } = await this.registerUseCase.execute({
       email,
       name,
-      password: passwordHash,
+      password,
       avatar_url,
     });
 
