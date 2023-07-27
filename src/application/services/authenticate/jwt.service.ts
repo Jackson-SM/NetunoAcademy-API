@@ -19,7 +19,17 @@ export class JwtService implements ServiceAuthenticateRepository {
 
     return token;
   }
-  async decode(token: string): Promise<boolean> {
-    throw new Error('Method not implemented.');
+  async decode(token: string): Promise<JwtPayloadService> {
+    const payload = jwt.decode(token, {
+      json: true,
+    });
+
+    const jwtPayload: JwtPayloadService = {
+      id: payload.id,
+      email: payload.email,
+      password: payload.password,
+    };
+
+    return jwtPayload;
   }
 }
