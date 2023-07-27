@@ -5,37 +5,50 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+# Descrição
 
-## Description
+> O "NetunoAcademy" é um emocionante projeto desenvolvido em Node.js, que visa criar uma plataforma educacional interativa para compartilhar e acessar cursos em diferentes áreas do conhecimento. Essa plataforma permitirá que instrutores qualificados ofereçam cursos de alta qualidade e que alunos interessados se inscrevam e façam parte desses cursos, criando assim uma comunidade de aprendizado dinâmica e envolvente.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+# Como utilizar a aplicação.
 
-## Installation
+- Primeiro, crie uma conta no site da [cloudinary](https://cloudinary.com/)
+- Instale o Docker em sua máquina.
 
+### Clone o projeto.
 ```bash
-$ yarn install
+git clone git@github.com:Jackson-SM/NetunoAcademy-API.git
+```
+### Entre no diretório do projeto.
+```bash
+cd ./NetunoAcademy-API
+```
+### Instale as dependências.
+```bash
+yarn install
+```
+### Inicie o Dockerfile para configurar o contêiner.
+```bash
+// Antes, garanta que o Docker esteja inicializado.
+docker-compose up -d
 ```
 
-## Running the app
+# Variáveis de Ambiente
+> Para esse projeto, estaremos utilizando variaveis de ambiente para manter nossos dados sensíveis.
+> O Banco de dados poderá ser configurado com o docker, mas caso deseje utilizar um **Cluster de banco de dados** também é possível.
+
+## Configurar as variaveis:
+- Caso já tenha todos os dados em mãos, poderá configurar as variaveis de ambiente utilizando o Shell Script criado para fazer isso automaticamente, apenas siga os passos abaixo.
+
+Na raiz do projeto, execute o ```Environment.sh``` com o bash.
+```bash
+bash environment.sh
+```
+> Para fazer isso manualmente, duplique o arquivo ```.env.example``` e renomeie para ```.env``` apenas. Em seguida edite o arquivo duplicado e renomeado substituindo os valores das variaveis.
+
+## Iniciar a aplicação
 
 ```bash
-# development
+# Desenvolvimentoo
 $ yarn run start
 
 # watch mode
@@ -45,7 +58,7 @@ $ yarn run start:dev
 $ yarn run start:prod
 ```
 
-## Test
+## Testar a aplicação
 
 ```bash
 # unit tests
@@ -58,16 +71,13 @@ $ yarn run test:e2e
 $ yarn run test:cov
 ```
 
-## Support
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+# Conclusão
 
-## Stay in touch
+> O "NetunoAcademy" é uma plataforma educacional desenvolvida em Node.js e NestJS, que proporciona uma experiência de aprendizado excepcional. Com recursos como o Swagger para documentação de APIs, a plataforma oferece uma interface interativa para explorar e compartilhar cursos em diversas áreas do conhecimento. Com cadastro de instrutores e alunos, painéis de gerenciamento, fóruns de discussão, avaliações, certificados e busca avançada, a plataforma promove uma comunidade de aprendizado colaborativa e segura, tornando-se uma solução valiosa para compartilhar conhecimento e enriquecer a educação.
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
-## License
+# Autores
 
-Nest is [MIT licensed](LICENSE).
+- Autor - [Jackson Magalhães](https://github.com/Jackson-SM)
+- Website - [Jackson Magalhães](jacksonmagalhaes.netlify.app)
