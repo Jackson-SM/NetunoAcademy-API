@@ -10,17 +10,23 @@ export class PrismaAuthRepository implements AuthRepository {
   constructor(private prisma: PrismaService) {}
 
   async register(user: User): Promise<void> {
-    const userToPrisma = PrismaUserMapper.toPrisma(user);
+    const userExists = await this.prisma.user.count({
+      where: { email: user.email },
+    });
+
+    if (userExists > 0) {
+      throw new HttpException('User already exists', HttpStatus.CONFLICT);
+    }
 
     const { password } = user;
 
     const getSalt = await bcrypt.genSalt(10);
     const passwordHash = await bcrypt.hash(password, getSalt);
 
-    user.password = passwordHash;
+    const userToPrisma = PrismaUserMapper.toPrisma(user);
 
     await this.prisma.user.create({
-      data: userToPrisma,
+      data: { ...userToPrisma, password: passwordHash },
     });
   }
 
