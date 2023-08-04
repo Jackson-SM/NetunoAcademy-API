@@ -42,3 +42,4 @@ lerna-debug.log*
 .env/
 dockerfile
 Dockerfile
+prisma/migrations/*/migration.sql
