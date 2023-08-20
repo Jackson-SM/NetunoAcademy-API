@@ -11,7 +11,7 @@ interface GetUserByIdCaseResponse {
 }
 
 @Injectable()
-export class LoginUseCase {
+export class GetUserByIdCase {
   constructor(private userRepository: UserRepository) {}
 
   async execute(
