@@ -22,3 +22,15 @@ model User {
 
   @@map("users")
 }
+
+model Course {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  avatar_url  String
+  students    Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("courses")
+}
