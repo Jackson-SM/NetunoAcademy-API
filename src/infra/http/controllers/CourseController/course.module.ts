@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
+import { CreateCourseController } from './CreateCourseController';
 
 @Module({
-  controllers: [],
+  controllers: [CreateCourseController],
   providers: [],
   exports: [],
 })
