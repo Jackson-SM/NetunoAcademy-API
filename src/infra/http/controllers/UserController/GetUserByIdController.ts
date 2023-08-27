@@ -3,7 +3,7 @@ import { UserViewModel } from '../../view-models/UserViewModel';
 import { GetUserByIdCase } from 'src/application/use-cases/users/get-user-by-id-case';
 
 @Controller('/users')
-export class GetUserById {
+export class GetUserByIdController {
   constructor(private getUserByIdCase: GetUserByIdCase) {}
 
   @Get(':id')
