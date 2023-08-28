@@ -5,7 +5,7 @@ interface CourseProps {
   teacher: string;
   description: string;
   avatar_url: string;
-  students: number;
+  students?: number;
   createdAt?: Date;
   updatedAt?: Date;
 }
