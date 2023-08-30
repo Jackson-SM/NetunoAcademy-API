@@ -7,9 +7,10 @@ import { LoginUseCase } from 'src/application/use-cases/auth/login-use-case';
 import { ServiceAuthenticateRepository } from 'src/domain/repositories/ServiceAuthenticateRepository';
 import { JwtService } from 'src/application/services/authenticate/jwt.service';
 import { LoginController } from './LoginController';
+import { DatabaseModule } from 'src/infra/database/database.module';
 
 @Module({
-  imports: [],
+  imports: [DatabaseModule],
   controllers: [RegisterController, LoginController],
   providers: [
     RegisterUseCase,
@@ -23,5 +24,6 @@ import { LoginController } from './LoginController';
       useClass: JwtService,
     },
   ],
+  exports: [],
 })
 export class AuthModule {}
