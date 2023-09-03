@@ -10,7 +10,6 @@ export class JwtService implements ServiceAuthenticateRepository {
     const payload: JwtPayloadService = {
       id: user.id,
       email: user.email,
-      password: user.password,
     };
 
     const token = jwt.sign(payload, `${process.env.SECRET_KEY_JWT}`, {
@@ -27,7 +26,6 @@ export class JwtService implements ServiceAuthenticateRepository {
     const jwtPayload: JwtPayloadService = {
       id: payload.id,
       email: payload.email,
-      password: payload.password,
     };
 
     return jwtPayload;
