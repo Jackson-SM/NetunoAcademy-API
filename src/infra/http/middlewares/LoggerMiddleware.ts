@@ -12,7 +12,8 @@ export class LoggerMiddleware implements NestMiddleware {
   constructor(private jwtService: ServiceAuthenticateRepository) {}
   async use(req: Request, res: Response, next: NextFunction) {
     try {
-      const token = req.cookies['access-token'];
+      const token = req.cookies;
+      console.log(token);
 
       await this.jwtService.decode(token);
 

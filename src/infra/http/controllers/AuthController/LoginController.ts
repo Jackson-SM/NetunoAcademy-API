@@ -20,15 +20,13 @@ export class LoginController {
       password,
     });
 
-    const userViewModel = UserViewModel.toHttp(user);
+    const userViewModel = await UserViewModel.toHttp(user);
 
-    response.cookie('access-token', token, {
-      httpOnly: true,
-      secure: true,
-    });
-
-    return {
-      user: userViewModel,
-    };
+    await response
+      .cookie('access-token', token, {
+        httpOnly: true,
+        secure: true,
+      })
+      .json(userViewModel);
   }
 }
