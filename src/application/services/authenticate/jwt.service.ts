@@ -13,7 +13,7 @@ export class JwtService implements ServiceAuthenticateRepository {
     };
 
     const token = jwt.sign(payload, `${process.env.SECRET_KEY_JWT}`, {
-      expiresIn: '7d',
+      expiresIn: `${process.env.JWT_EXPIRES_IN}d`,
     });
 
     return token;
@@ -22,12 +22,17 @@ export class JwtService implements ServiceAuthenticateRepository {
     const payload = jwt.decode(token, {
       json: true,
     });
-
     const jwtPayload: JwtPayloadService = {
       id: payload.id,
       email: payload.email,
     };
 
     return jwtPayload;
+  }
+
+  async verify(token: string) {
+    const tokenIsValidjwt = jwt.verify(token, `${process.env.SECRET_KEY_JWT}`);
+
+    return tokenIsValidjwt;
   }
 }
