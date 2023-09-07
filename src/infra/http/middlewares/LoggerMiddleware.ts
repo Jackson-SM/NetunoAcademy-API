@@ -12,12 +12,11 @@ export class LoggerMiddleware implements NestMiddleware {
   constructor(private jwtService: ServiceAuthenticateRepository) {}
   async use(req: Request, res: Response, next: NextFunction) {
     try {
-      const token = req.cookies;
-      console.log(token);
+      const token = req.cookies['access-token'];
 
-      await this.jwtService.decode(token);
+      const isValidToken = await this.jwtService.verify(token);
 
-      next();
+      return next();
     } catch (err) {
       throw new HttpException('Invalid token', HttpStatus.UNAUTHORIZED);
     }

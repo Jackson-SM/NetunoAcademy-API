@@ -22,11 +22,15 @@ export class LoginController {
 
     const userViewModel = await UserViewModel.toHttp(user);
 
-    await response
-      .cookie('access-token', token, {
-        httpOnly: true,
-        secure: true,
-      })
-      .json(userViewModel);
+    response.cookie('access-token', token, {
+      expires: new Date(
+        Date.now() + Number(process.env.JWT_EXPIRES_IN) * 24 * 60 * 60 * 1000,
+      ), // JWT_EXPIRES_IN is counting in days (so "7" = 7 days)
+      secure: true,
+    });
+
+    return {
+      userViewModel,
+    };
   }
 }
