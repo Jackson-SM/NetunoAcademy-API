@@ -14,7 +14,7 @@ export class LoggerMiddleware implements NestMiddleware {
     try {
       const token = req.cookies['access-token'];
 
-      const isValidToken = await this.jwtService.verify(token);
+      await this.jwtService.verify(token);
 
       return next();
     } catch (err) {

@@ -20,7 +20,7 @@ export class LoginController {
       password,
     });
 
-    const userViewModel = await UserViewModel.toHttp(user);
+    const userViewModel = UserViewModel.toHttp(user);
 
     response.cookie('access-token', token, {
       expires: new Date(
