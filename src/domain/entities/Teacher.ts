@@ -11,7 +11,7 @@ interface TeacherProps {
   updatedAt?: Date;
 }
 
-export class Course {
+export class Teacher {
   private props: TeacherProps;
   private _id: string;
 
