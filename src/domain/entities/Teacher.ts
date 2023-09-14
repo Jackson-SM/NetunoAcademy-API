@@ -2,6 +2,7 @@ import { randomUUID } from 'crypto';
 
 interface TeacherProps {
   name: string;
+  email: string;
   age: number;
   training: string;
   stacks: string[];
