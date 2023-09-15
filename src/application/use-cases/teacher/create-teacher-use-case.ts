@@ -33,6 +33,8 @@ export class CreateTeacherUseCase {
       photo,
     });
 
+    await this.teacherRepository.create(teacher);
+
     return {
       teacher,
     };
