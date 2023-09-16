@@ -1,3 +1,4 @@
+import { Injectable } from '@nestjs/common';
 import { Teacher } from 'src/domain/entities/Teacher';
 import { TeacherRepository } from 'src/domain/repositories/TeacherRepository';
 
@@ -15,6 +16,7 @@ interface CreateTeacherUseCaseResponse {
   teacher: Teacher;
 }
 
+@Injectable()
 export class CreateTeacherUseCase {
   constructor(private teacherRepository: TeacherRepository) {}
 
