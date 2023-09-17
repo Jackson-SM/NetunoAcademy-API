@@ -30,7 +30,7 @@ model Teacher {
   email       String
   age         Int
   training    String
-  stacks      String
+  stacks      String[]
   description String
   photo       String?
   createdAt   DateTime @default(now())
