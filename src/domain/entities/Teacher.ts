@@ -38,6 +38,13 @@ export class Teacher {
   get name(): string {
     return this.props.name;
   }
+  // Email
+  set email(email: string) {
+    this.props.email = email;
+  }
+  get email(): string {
+    return this.props.email;
+  }
 
   // Age
   set age(age: number) {
