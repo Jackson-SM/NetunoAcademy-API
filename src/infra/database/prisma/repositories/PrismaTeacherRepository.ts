@@ -24,7 +24,17 @@ export class PrismaTeacherRepository implements TeacherRepository {
     return PrismaTeacherMapper.toDomain(raw);
   }
 
-  getById(id: string): Promise<Teacher> {
-    throw new Error('Method not implemented.');
+  async getById(id: string): Promise<Teacher> {
+    const teacher = await this.prisma.teacher.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (!teacher) {
+      throw new HttpException('Teacher not found', HttpStatus.NOT_FOUND);
+    }
+
+    return PrismaTeacherMapper.toDomain(teacher);
   }
 }

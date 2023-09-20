@@ -1,8 +1,8 @@
 import { Body, Controller, Post, Res } from '@nestjs/common';
+import { Response } from 'express';
 import { LoginUseCase } from 'src/application/use-cases/auth/login-use-case';
 import { LoginBody } from '../../dtos/authentication/login-body';
 import { UserViewModel } from '../../view-models/UserViewModel';
-import { Response } from 'express';
 
 @Controller('auth')
 export class LoginController {
